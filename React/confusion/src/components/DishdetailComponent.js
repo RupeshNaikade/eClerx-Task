@@ -25,6 +25,7 @@ import { Card, CardImg, CardBody, CardTitle, CardText} from 'reactstrap';
         console.log(dish)
         if (dish != null) {
             return (
+
             dish.comments.map((comm) => {
                 
                 return (
@@ -54,7 +55,7 @@ import { Card, CardImg, CardBody, CardTitle, CardText} from 'reactstrap';
                     {<RenderDish dish={props.dish} />}                    
                 </div>
                 <div className="col-12 col-md-5 m-1">
-                    <h4><strong>Comments</strong></h4>
+                <h4><strong>Comments</strong></h4>
                     {<RenderComments dish={props.dish} />}
                 </div>
                 </div>
