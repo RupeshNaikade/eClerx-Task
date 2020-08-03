@@ -1,6 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-
+var authenticate = require('../authenticate');
 const mongoose = require('mongoose');
 const Promotions = require('../models/promotions');
 const Leaders = require('../models/leaders');
@@ -18,11 +18,11 @@ promoRouter.route('/')
     }, (err) => next(err))
     .catch((err) => next(err));
 })
-.put((req,res,next)=>{
+.put(authenticate.verifyUser,(req,res,next)=>{
     res.statusCode=403;
     res.end("cannot perform put operation on promotions!");
 })
-.post((req,res,next)=>{
+.post(authenticate.verifyUser,(req,res,next)=>{
     Promotions.create(req.body)
     .then((promo) => {
         console.log('Promotion Created ', promo);
@@ -32,7 +32,7 @@ promoRouter.route('/')
     }, (err) => next(err))
     .catch((err) => next(err));
 })
-.delete((req,res,next)=>{
+.delete(authenticate.verifyUser,(req,res,next)=>{
     Promotions.remove({})
     .then((resp) => {
         res.statusCode = 200;
@@ -53,11 +53,11 @@ promoRouter.route('/:promoId')
     }, (err) => next(err))
     .catch((err) => next(err));
 })
-.put((req,res,next)=>{
+.put(authenticate.verifyUser,(req,res,next)=>{
     res.statusCode=403;
     res.end("cannot perform put operation on promotions!");
 })
-.post((req,res,next)=>{
+.post(authenticate.verifyUser,(req,res,next)=>{
     Promotions.create(req.body)
     .then((promo) => {
         console.log('Promotion Created ', promo);
@@ -67,7 +67,7 @@ promoRouter.route('/:promoId')
     }, (err) => next(err))
     .catch((err) => next(err));
 })
-.delete((req,res,next)=>{
+.delete(authenticate.verifyUser,(req,res,next)=>{
     Promotions.remove({})
     .then((resp) => {
         res.statusCode = 200;
