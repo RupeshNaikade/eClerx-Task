@@ -18,8 +18,7 @@ favoriteRouter
   .get(cors.cors, authenticate.verifyUser, (req, res, next) => {
     Favorites.findOne({ user: req.user._id })
       .populate("user dishes")
-      .then(
-        favorites => {
+      .then(favorites => {
           res.statusCode = 200;
           res.setHeader("Content-Type", "application/json");
           res.json(favorites);
@@ -39,8 +38,7 @@ favoriteRouter
         favorite.save().then(updatedFavorite => {
           Favorites.findById(updatedFavorite._id)
             .populate("user dishes")
-            .then(
-              updatedFavorite => {
+            .then(updatedFavorite => {
                 res.status = 200;
                 res.setHeader("Content-Type", "application/json");
                 res.json(updatedFavorite);
@@ -85,8 +83,7 @@ favoriteRouter
         favorite.dishes = [];
         favorite
           .save()
-          .then(
-            updatedFavorite => {
+          .then(updatedFavorite => {
               res.status = 200;
               res.setHeader("Content-Type", "application/json");
               res.json(updatedFavorite);
@@ -139,8 +136,7 @@ favoriteRouter
           then(updatedFavorite => {
             Favorites.findById(updatedFavorite._id)
               .populate("user dishes")
-              .then(
-                updatedFavorite => {
+              .then(updatedFavorite => {
                   res.status = 200;
                   res.setHeader("Content-Type", "application/json");
                   res.json(updatedFavorite);

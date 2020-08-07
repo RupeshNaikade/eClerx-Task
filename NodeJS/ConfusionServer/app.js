@@ -15,7 +15,7 @@ var promoRouter = require('./routes/promoRouter');
 var leaderRouter = require('./routes/leaderRouter');
 const favoriteRouter = require("./routes/favouriteRouter");
 const uploadRouter = require('./routes/uploadRouter');
-
+var commentRouter = require('./routes/commentRouter');
 var app = express();
 app.all('*', (req, res, next) => {
   if (req.secure) {
@@ -44,8 +44,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/dishes', dishRouter);
 app.use('/promotions', promoRouter);
 app.use('/leaders', leaderRouter);
+app.use('/comments',commentRouter);
 app.use('/imageUpload',uploadRouter);
-app.use('/fav',uploadRouter);
+app.use('/fav',favoriteRouter);
 
 const mongoose=require('mongoose');
 const dishes=require('./models/dishes');
